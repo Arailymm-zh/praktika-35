@@ -1,0 +1,21 @@
+const getRandomNum = (min, max) => {
+return Math.round(Math.random() * (max - min)) + min;
+}
+
+const getPromise = (min, max, delay) => {
+return new Promise( resolve => {
+setTimeout( () => {
+resolve(getRandomNum(min, max))
+}, delay * 1000)
+})
+}
+
+const getNum1 = () => getPromise(1, 5, 3);
+const getNum2 = () => getPromise(6, 10, 5);
+
+const showResult = async () => {
+const result = await getNum1() + await getNum2();
+console.log(result)
+}
+
+showResult()
